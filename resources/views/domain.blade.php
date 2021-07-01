@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel1</title>
+        <title>Domain</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -28,31 +28,30 @@
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <?php if (isset($_GET['error'])): ?>
-                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                <strong>Error!</strong> We get some error! Try again.
-                            </div><br>
-                            <?php endif; ?>
-                            <div class="flex items-center">
-                                <form method="POST" action="/get_links">
-                                    @csrf
-                                    <span>Enter domain:</span>
-                                    <input type="text" name="domain" style="border: 1px solid black; margin: 5px;">
-                                    <input type="submit">
-                                    @error('domain')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </form>
-                            </div>
-
+                    <div class="grid">
                             <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Enter domain and get table with list pages and links.
-                                </div>
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Url</th>
+                                        <th scope="col">Output links</th>
+                                        <th scope="col">Input links</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $num = 1; ?>
+                                    @foreach($links as $link)
+                                    <tr>
+                                        <th scope="row">{{$num++}}</th>
+                                        <td>{{$link['url']}}</td>
+                                        <td>{{$link['links']}}</td>
+                                        <td>{{$link['linked']}}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
                     </div>
                 </div>
 
