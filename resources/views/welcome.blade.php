@@ -40,7 +40,7 @@
                                     @csrf
                                     <span>Enter domain:</span>
                                     <input type="text" name="domain" style="border: 1px solid black; margin: 5px;">
-                                    <input type="submit">
+                                    <input type="submit" value="Submit">
                                     @error('domain')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
